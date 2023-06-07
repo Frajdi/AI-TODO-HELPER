@@ -4,7 +4,8 @@ import Button from "@mui/material/Button";
 import ButtonBorders from "./ButtonBorders";
 import { useAnimation } from "framer-motion";
 
-const SearchBar = ({ handleSearch, value }) => {
+const SearchBar = ({ handleUserInput, value, handleAiGenerate }) => {
+
 
   const activateHoverState = useAnimation();
 
@@ -23,7 +24,7 @@ const SearchBar = ({ handleSearch, value }) => {
     >
       <InputBase
         sx={{ ml: 1, flex: 1 , fontFamily: "Bruno Ace SC", fontSize: 18}}
-        onChange={handleSearch}
+        onChange={handleUserInput}
         placeholder="Enter your task here"
         value={value}
       />
@@ -37,6 +38,7 @@ const SearchBar = ({ handleSearch, value }) => {
             }}
             onMouseEnter={() => activateHoverState.start("hovered")}
             onMouseLeave={() => activateHoverState.start("normal")}
+            onClick={() => handleAiGenerate()}
           >
             <ButtonBorders activateHoverState = {activateHoverState}/>
             Generate AI

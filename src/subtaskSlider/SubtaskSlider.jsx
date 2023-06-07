@@ -11,7 +11,7 @@ import useChatGPT from "../state/useChatGPT";
 
 const SubtaskSlider = () => {
 
-  const {} = useChatGPT
+  const {handleUserInput, handleAiActivate, userInput} = useChatGPT()
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [inputValue, setInputValue] = useState('');
 
@@ -74,11 +74,11 @@ const SubtaskSlider = () => {
             fontSize={40}
             sx={{ filter: "drop-shadow(0 1rem 0.3rem rgba(0, 0, 0, 1))" }}
           >
-            {inputValue}
+            {userInput}
           </Typography>
         </Box>
       </Stack>
-      <SearchBar value={inputValue} handleSearch={(e) => {setInputValue(e.target.value)}}/>
+      <SearchBar value={userInput} handleUserInput={handleUserInput} handleAiGenerate={handleAiActivate}/>
     </Stack>
   );
 };

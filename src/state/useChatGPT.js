@@ -18,29 +18,62 @@ const useChatGPT = () => {
     apiKey: import.meta.env.VITE_MyImageGeneratorKey,
   });
 
+
   const openai = new OpenAIApi(configuration);
   const imageOpenAi = new OpenAIApi(imageConfiguration);
 
   const aiGenerate = async (userInput) => {
 
-    const completion = await openai.createChatCompletion({
-      model: "gpt-3.5-turbo",
-      messages: [
-        {
-          role: "user",
-          content: `Split this in smaller subtasks and put a $ after each subtask: ${userInput}`,
-        },
-      ],
-    });
+    try {
+      const completion = await openai.createChatCompletion({
+        model: "gpt-3.5-turbo",
+        messages: [
+          {
+            role: "user",
+            content: `Split this in 5 smaller subtasks and put a $ after each subtask: ${userInput}`,
+          },
+        ],
+      });
+      // setAiResponse(completion.data.choices[0].message.content.split('$'));
+      console.log('subtasks', completion.data.choices[0].message.content.split('$'))
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.status);
+        console.log(error.response.data);
+        const completion = error.response
+      } else {
+        console.log(error.message);
+        const completion = error.message
+      }
+    }
 
-    const responseImage = await imageOpenAi.createImage({
-      prompt: userInput,
-      n: 5,
-      size: "256x256",
-    });
 
-    setAiImage(responseImage.data.data[0].url);
-    setAiResponse(completion.data.choices[0].message.content.split('$'));
+
+    try {
+      const responseImage = await imageOpenAi.createImage({
+        prompt: userInput,
+        n: 5,
+        size: "1024x1024",
+      });
+      // setAiImage(responseImage.data.data[0].url);
+      console.log('images', responseImage.data.data)
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.status);
+        console.log(error.response.data);
+        const responseImage = error.response
+      } else {
+        console.log(error.message);
+        const responseImage = error.message
+      }
+    }
+
+  
+
+    
+
+    // console.log('images', responseImage.data.data)
+    // console.log('subtasks', completion.data.choices[0].message.content.split('$'))
     setLoading(false);
   };
 
@@ -59,7 +92,7 @@ const useChatGPT = () => {
     userInput,
     loading,
     handleUserInput,
-    handleAiActivate,
+    handleAiActivate
   };
 };
 
