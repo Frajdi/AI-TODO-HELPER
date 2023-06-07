@@ -4,9 +4,9 @@ import { useState } from "react";
 const useChatGPT = () => {
 
 
-  const [aiResponse, setAiResponse] = useState([]);
-  const [aiImage, setAiImage] = useState();
-  const [userInput, setUserInput] = useState("");
+  const [aiResponse, setAiResponse] = useState(null);
+  const [aiImages, setAiImages] = useState(null);
+  const [userInput, setUserInput] = useState('');
   const [loading, setLoading] = useState(null);
 
 
@@ -34,14 +34,16 @@ const useChatGPT = () => {
           },
         ],
       });
-      // setAiResponse(completion.data.choices[0].message.content.split('$'));
+      setAiResponse(completion.data.choices[0].message.content.split('$'));
       console.log('subtasks', completion.data.choices[0].message.content.split('$'))
     } catch (error) {
       if (error.response) {
         console.log(error.response.status);
         console.log(error.response.data);
         const completion = error.response
+        setAiResponse(null)
       } else {
+        setAiResponse(null)
         console.log(error.message);
         const completion = error.message
       }
@@ -53,16 +55,18 @@ const useChatGPT = () => {
       const responseImage = await imageOpenAi.createImage({
         prompt: userInput,
         n: 5,
-        size: "1024x1024",
+        size: "512x512",
       });
-      // setAiImage(responseImage.data.data[0].url);
+      setAiImages(responseImage.data.data);
       console.log('images', responseImage.data.data)
     } catch (error) {
       if (error.response) {
         console.log(error.response.status);
         console.log(error.response.data);
         const responseImage = error.response
+        setAiImages(null)
       } else {
+        setAiImages(null)
         console.log(error.message);
         const responseImage = error.message
       }
@@ -88,9 +92,9 @@ const useChatGPT = () => {
 
   return {
     aiResponse,
-    aiImage,
+    aiImages,
     userInput,
-    loading,
+    loading : !!aiImages && !!aiResponse,
     handleUserInput,
     handleAiActivate
   };
