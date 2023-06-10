@@ -13,7 +13,7 @@ const ProgressiveImg = ({ placeholderSrc, src }) => {
 
   return (
     <img
-      src={ imgSrc}
+      src={imgSrc}
       style={{
         width: "100%",
         height: "100%",
