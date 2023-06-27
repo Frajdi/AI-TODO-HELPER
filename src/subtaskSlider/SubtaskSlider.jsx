@@ -25,11 +25,16 @@ const SubtaskSlider = () => {
   const [images, setImages] = useState(subImages);
 
   useEffect(() => {
-    if (loading && aiImages) {
+    if (!loading && aiImages) {
+      console.log(aiImages);
       setImages(aiImages);
     }
   }, [aiImages]);
 
+
+  if(loading) {
+    return '...Loading'
+  }
 
   return (
     <Stack justifyContent="center" alignItems="center" height="100vh">
