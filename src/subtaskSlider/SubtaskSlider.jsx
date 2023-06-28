@@ -66,7 +66,7 @@ const SubtaskSlider = () => {
             index={index + 1}
             hoveredIndex={hoveredIndex}
             setHoveredIndex={setHoveredIndex}
-            isLoading={true}
+            isLoading={isLoading}
           >
             <ProgressiveImg  src={item.url === subImages[index].url ? null : item.url} placeholderSrc={subImages[index].url}/>
             {hoveredIndex === index + 1 && !isLoading && (

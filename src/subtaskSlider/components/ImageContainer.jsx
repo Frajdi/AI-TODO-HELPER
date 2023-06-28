@@ -7,7 +7,8 @@ const ImageContainer = ({
   width,
   index,
   setHoveredIndex,
-  hoveredIndex
+  hoveredIndex,
+  isLoading
 }) => {
   const activateResize = useAnimation();
 
@@ -51,8 +52,8 @@ const ImageContainer = ({
             filter: 'brightness(50%)',
           },
       }}
-      onHoverStart = {() => setHoveredIndex(index)}
-      onHoverEnd = {() => setHoveredIndex(null)}
+      onHoverStart = {() => {!isLoading && setHoveredIndex(index)}}
+      onHoverEnd = {() => {!isLoading && setHoveredIndex(null)}}
       animate = {activateResize}
     >
       {children}
