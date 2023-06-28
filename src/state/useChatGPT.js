@@ -51,7 +51,7 @@ const useChatGPT = () => {
       }
     }
 
-    setLoading(false);
+    setTimeout(() => {setLoading(false)}, 4000)
   };
 
   const handleUserInput = (e) => setUserInput(e.target.value);

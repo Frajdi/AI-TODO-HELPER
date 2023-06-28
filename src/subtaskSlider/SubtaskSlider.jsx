@@ -17,7 +17,7 @@ const SubtaskSlider = () => {
     handleAiActivate,
     aiResponse,
     aiImages,
-    loading,
+    loading : isLoading,
     userInput,
   } = useChatGPT();
 
@@ -25,16 +25,36 @@ const SubtaskSlider = () => {
   const [images, setImages] = useState(subImages);
 
   useEffect(() => {
-    if (!loading && aiImages) {
+    if (!isLoading && aiImages) {
       console.log(aiImages);
       setImages(aiImages);
     }
-  }, [aiImages]);
+  }, [aiImages, isLoading]);
 
+// const isLoading = true
 
-  if(loading) {
-    return '...Loading'
-  }
+  useEffect(() => {
+    let intervalId;
+
+    if (isLoading) {
+      intervalId = setInterval(() => {
+        setHoveredIndex((prevHoveredIndex) => {
+          if(prevHoveredIndex !== null && prevHoveredIndex < images.length) {
+              return prevHoveredIndex + 1
+          }  
+          else if(prevHoveredIndex === null || prevHoveredIndex === images.length) {
+            return 1
+          }
+        });
+      }, 450);
+    }
+
+    return () => {
+      clearInterval(intervalId);
+      setHoveredIndex(null)
+    };
+  }, [isLoading]);
+
 
   return (
     <Stack justifyContent="center" alignItems="center" height="100vh">
@@ -46,9 +66,10 @@ const SubtaskSlider = () => {
             index={index + 1}
             hoveredIndex={hoveredIndex}
             setHoveredIndex={setHoveredIndex}
+            isLoading={true}
           >
             <ProgressiveImg  src={item.url === subImages[index].url ? null : item.url} placeholderSrc={subImages[index].url}/>
-            {hoveredIndex === index + 1 && (
+            {hoveredIndex === index + 1 && !isLoading && (
               <SubTaskContent
                 part={index + 1}
                 content={aiResponse ? aiResponse[index] : subTasks[index]}
@@ -71,7 +92,7 @@ const SubtaskSlider = () => {
             fontSize={40}
             sx={{ filter: "drop-shadow(0 1rem 0.3rem rgba(0, 0, 0, 1))" }}
           >
-            {userInput}
+            {!isLoading ? userInput: 'Loading ...'}
           </Typography>
         </Box>
       </Stack>

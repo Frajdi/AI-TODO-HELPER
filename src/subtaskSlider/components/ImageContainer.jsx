@@ -7,7 +7,7 @@ const ImageContainer = ({
   width,
   index,
   setHoveredIndex,
-  hoveredIndex,
+  hoveredIndex
 }) => {
   const activateResize = useAnimation();
 
@@ -20,6 +20,7 @@ const ImageContainer = ({
       activateResize.start("reduceSecondary");
     }
   }, [hoveredIndex]);
+  
 
   const secondaryHeight = () => {
     const indexesFromHovered =  Math.abs(hoveredIndex - index)
