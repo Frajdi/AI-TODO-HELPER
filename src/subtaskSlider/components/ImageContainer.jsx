@@ -34,22 +34,37 @@ const ImageContainer = ({
       style = {{
          width: width,
          height: "100%", 
+         borderRadius: '15px',
+         overflow: 'hidden'
         }}
       variants = {{
         expand: {
             width: "70%",
             height: "100%",
             filter: 'brightness(100%)',
+            borderBottomLeftRadius: index > 1 ? 0 : '15px',
+            borderBottomRightRadius: index < 5 ? 0 : '15px',
+            borderTopLeftRadius: '15px',
+            borderTopRightRadius:'15px',
            },
         reduce: {
             height: "100%",
             width: width,
             filter: 'brightness(100%)',
+            borderRadius: '15px',
+            borderTopRightRadius : '15px',
+            borderBottomRightRadius: '15px',
+            borderTopLeftRadius : '15px',
+            borderBottomLeftRadius: '15px',
         },
         reduceSecondary: {
             height: secondaryHeight(),
             width: width,
             filter: 'brightness(50%)',
+            borderTopRightRadius : hoveredIndex > index ? 0 : '15px',
+            borderBottomRightRadius: hoveredIndex > index || index < 5 ? 0 : '15px',
+            borderTopLeftRadius : hoveredIndex < index ? 0 : '15px',
+            borderBottomLeftRadius: hoveredIndex < index || index > 1  ?  0 : '15px',
           },
       }}
       onHoverStart = {() => {!isLoading && setHoveredIndex(index)}}

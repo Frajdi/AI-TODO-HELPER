@@ -20,7 +20,7 @@ const ProgressiveImg = ({ placeholderSrc, src }) => {
         objectFit: "cover",
         filter: "drop-shadow(1rem 1rem 1rem rgba(0, 0, 0, 1))",
         position: "absolute",
-        borderRadius: '15px'
+        // borderRadius: '15px'
       }}
     />
   );
