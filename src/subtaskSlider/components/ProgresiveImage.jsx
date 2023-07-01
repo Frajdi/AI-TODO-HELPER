@@ -18,9 +18,7 @@ const ProgressiveImg = ({ placeholderSrc, src }) => {
         width: "100%",
         height: "100%",
         objectFit: "cover",
-        filter: "drop-shadow(1rem 1rem 1rem rgba(0, 0, 0, 1))",
-        position: "absolute",
-        // borderRadius: '15px'
+        filter: "drop-shadow(1rem 1rem 1rem rgba(0, 0, 0, 1))"
       }}
     />
   );
