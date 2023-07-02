@@ -7,9 +7,10 @@ AI-TODO-HELPER is a powerful task management tool that leverages the OpenAI GPT-
 ## Table of Contents
 
 - [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+- [TODO](#todo)
+  - [WebApp](#webapp)
+  - [API](#api)
+  - [Visionary](#very-optimistic-visionary-plan)
 
 ## Installation
 
@@ -23,6 +24,48 @@ To use AI-TODO-HELPER, follow these steps:
    npm install
    npm start
 ## This is the previous implementation without setting up a proxy middleware
+
+
+# TODO
+
+This is the roadmap for the future development of our project.
+
+## Planned Features
+
+
+### WebApp
+
+- Resolve and optimize the requests made to the OpenAI API to ensure smooth and reliable functionality.
+- When the user creates a todo it will open a pop-up where he sets the duration of this task.
+- Implement necessary routes for seamless navigation within the application.
+  - `/create-todo`: Integrate an image slider that allows users to create todos with visual representation.
+  - `/calendar`: Develop a calendar view where users can set and manage todos in a convenient and organized manner .
+- Calendar component 
+    - This will be a grid where the years represents the rows and the months and the columns the months 
+    - Below this grid it should be a row that slides on x-axis with cards of all available todos that arent already set.
+        - User grabs todos from the todo list below the grid and drags them to the calendar.
+        - When the user finds the correct year and month he wants he holds there for 3 seconds and the cell where the current card is hovering to will exapnd into a as big grid ass a current one.
+        - This new grid where the rows will be replaced by the days of the month the user chose to hover on the previous grid and the columns will represent the hours of that day.
+        - While the user keeps the card hovered above a cell the x-axe will change the colour to a sligth purple(maybe) and the y-axe of that cell also.
+        -When the user drops the card in the hour he wants the card will take that as a starting hour and if the task is set to more than one hour it will expend after being droped and takes as meany hour cells as it needs.  
+
+
+### API
+
+- Connect it with hasura and make the appropriate backend to it.
+- Make the authentication and the log in with the users.
+- Make it possible to work on the same workspace with different people.
+    - Make it with hasura GraphQL subscription events that hasura offers.
+    - this will enable real time view and modifications on the same calendar for the group of users.
+
+### Very Optimistic Visionary Plann
+
+- Make this application work with: 
+    - VR (Virtual Reality)
+    - AR (Augmented Reality)
+
+
+We are committed to continuously improving and expanding the functionality of our AI-TODO-HELPER application to provide an exceptional user experience. Stay tuned for updates and exciting new features!
 
 
 
