@@ -32,7 +32,7 @@ start:
 	@echo " "
 	@echo " "
 	@echo " "
-	@echo ""npm install && npm start
+	npm install && npm start
 
 
 
