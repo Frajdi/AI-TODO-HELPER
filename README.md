@@ -31,6 +31,8 @@ To use AI-TODO-HELPER, follow these steps:
    make start
    ```
     If you do you will get this cool ascii art in your terminal.
+
+    
     ![Alt text](image-1.png)
    
 ## This is the previous implementation without setting up a proxy middleware
