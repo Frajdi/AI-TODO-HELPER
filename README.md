@@ -1,7 +1,27 @@
 # AI-TODO-HELPER
 
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
+AI-TODO-HELPER is a powerful task management tool that leverages the OpenAI GPT-3.5 Turbo model to assist you in breaking down tasks into smaller subtasks. With the help of AI and Framer Motion libary , you can easily split your tasks and generate a visual representation of the subtasks with captivating animations, enhancing the overall visual experience. By utilizing perceived performance techniques, we have ensured exceptional user experience, making the AI-TODO-HELPER interface smooth.
 
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Installation
+
+To use AI-TODO-HELPER, follow these steps:
+
+1. Clone this repository to your local machine.
+2. Navigate to the project directory.
+3. Install the dependencies by running the following command:
+
+   ```shell
+   npm install
+   npm start
 ## This is the previous implementation without setting up a proxy middleware
 
 
@@ -85,4 +105,11 @@ const useChatGPT = () => {
   };
 };
 
-export default useChatGPT;```
+export default useChatGPT; 
+```
+
+### This is in the useChatGPT.js custom hook it works but we get an error that says: 
+
+```unable to useChatGPT.js? Refused to set unsafe header "User-Agent"```
+
+### Now we are going to use axios to make OPENAI SDK in order to fix the error but we are also going to set up a proxy server on our local development environment that forwards the requests to the OpenAI API. This way, the request will be made from our local server instead of the client-side, bypassing the CORS restrictions. 
