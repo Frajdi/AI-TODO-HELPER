@@ -18,6 +18,7 @@ const SubtaskSlider = () => {
     aiResponse,
     aiImages,
     loading : isLoading,
+    setLoading,
     userInput,
   } = useChatGPT();
 
@@ -26,12 +27,10 @@ const SubtaskSlider = () => {
 
   useEffect(() => {
     if (!isLoading && aiImages) {
-      console.log(aiImages);
       setImages(aiImages);
     }
   }, [aiImages, isLoading]);
 
-// const isLoading = true
 
   useEffect(() => {
     let intervalId;
@@ -68,8 +67,12 @@ const SubtaskSlider = () => {
             setHoveredIndex={setHoveredIndex}
             isLoading={isLoading}
           >
-            <ProgressiveImg  src={item.url === subImages[index].url ? null : item.url} placeholderSrc={subImages[index].url}/>
-            {/* <img src={item.url} /> */}
+            <ProgressiveImg 
+              src={item.url === subImages[index].url ? null : item.url}
+              placeholderSrc={subImages[index].url}
+              isLastElement = {images.length === index + 1}
+              setLoading ={setLoading}
+              />
             {hoveredIndex === index + 1 && !isLoading && (
               <SubTaskContent
                 part={index + 1}

@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react";
 
-const ProgressiveImg = ({ placeholderSrc, src }) => {
+const ProgressiveImg = ({
+  placeholderSrc,
+  src,
+  isLastElement,
+  setLoading
+}) => {
+
   const [imgSrc, setImgSrc] = useState(placeholderSrc || src);
 
   useEffect(() => {
@@ -8,6 +14,9 @@ const ProgressiveImg = ({ placeholderSrc, src }) => {
     img.src = src;
     img.onload = () => {
       setImgSrc(src);
+      // if(isLastElement){
+      //   setLoading(false)
+      // }
     };
   }, [src]);
 

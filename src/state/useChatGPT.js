@@ -8,13 +8,16 @@ const useChatGPT = () => {
   const [aiImages, setAiImages] = useState(null);
   const [loading, setLoading] = useState(false);
 
+
   //Prepare the configuration
   const configuration = new Configuration({
-    apiKey: import.meta.env.VITE_SUBTASKKEY,
+    apiKey: import.meta.env.VITE_SUBTASK_KEY,
+    organization: import.meta.env.VITE_ORGANIZATION_ID
   });
 
   const imageConfiguration = new Configuration({
-    apiKey: import.meta.env.VITE_MyImageGeneratorKey,
+    apiKey: import.meta.env.VITE_IMAGE_GENERATOR_KEY,
+    organization: import.meta.env.VITE_ORGANIZATION_ID
   });
 
   const openai = new OpenAIApi(configuration);
@@ -41,6 +44,7 @@ const useChatGPT = () => {
 
       setAiImages(responseImage.data.data);
       setAiResponse(completion.data.choices[0].message.content.split("$"));
+      setLoading(false)
     } catch (error) {
       if (error.response) {
         const completion = error.response;
@@ -51,7 +55,6 @@ const useChatGPT = () => {
       }
     }
 
-    setTimeout(() => {setLoading(false)}, 4000)
   };
 
   const handleUserInput = (e) => setUserInput(e.target.value);
@@ -68,6 +71,7 @@ const useChatGPT = () => {
     aiImages,
     userInput,
     loading,
+    setLoading,
     handleUserInput,
     handleAiActivate,
   };
