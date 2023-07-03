@@ -168,3 +168,6 @@ export default useChatGPT;
 ```unable to useChatGPT.js? Refused to set unsafe header "User-Agent"```
 
 ### Now we are going to use axios to make OPENAI SDK in order to fix the error but we are also going to set up a proxy server on our local development environment that forwards the requests to the OpenAI API. This way, the request will be made from our local server instead of the client-side, bypassing the CORS restrictions. 
+
+
+### Fetching with axios didn't really work so the way i fixed it was by removing the  User_agent at all from the configuration object and imageConfiguration on the useChatGPT hook.
