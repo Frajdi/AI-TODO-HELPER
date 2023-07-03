@@ -15,11 +15,15 @@ const useChatGPT = () => {
     organization: import.meta.env.VITE_ORGANIZATION_ID
   });
 
+  delete configuration.baseOptions.headers["User-Agent"];
+  
   const imageConfiguration = new Configuration({
     apiKey: import.meta.env.VITE_IMAGE_GENERATOR_KEY,
     organization: import.meta.env.VITE_ORGANIZATION_ID
   });
 
+  delete imageConfiguration.baseOptions.headers["User-Agent"];
+  
   const openai = new OpenAIApi(configuration);
   const imageOpenAi = new OpenAIApi(imageConfiguration);
 
